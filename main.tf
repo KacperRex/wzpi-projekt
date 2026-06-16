@@ -3,7 +3,9 @@ terraform {
 }
 variable "file_content" {}
 variable "file_name" {}
-resource "local_file" "test" {
- content = var.file_content
- filename = var.file_name
+variable "file_count" {}
+resource "local_file" "files" {
+count = var.file_count
+content = "Plik nr ${count.index}"
+filename = "plik_${count.index}.txt"
 }
